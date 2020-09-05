@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const {buildToken} = require('../utils/jwt_interactor');
 const User = require('../../models/user');
 
-const Add = ({email, password}, res) => {
+const add = ({email, password}, res) => {
 
     let user = new User({
         email:email,
@@ -29,5 +29,5 @@ const Add = ({email, password}, res) => {
 }
 
 module.exports = {
-    Add
+    add
 }
