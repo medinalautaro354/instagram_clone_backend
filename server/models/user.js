@@ -17,7 +17,7 @@ let user = new Schema({
         type: String,
         required: false
     },
-    IsActive: {
+    isActive: {
         type: Boolean,
         default: true
     }

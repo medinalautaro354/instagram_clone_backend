@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 
-app.use(require("./autentication"));
+app.use(require("./authentication"));
 app.use(require('./health'))
+app.use(require('./story'))
+
 
 module.exports = app;
