@@ -23,6 +23,11 @@ let user = new Schema({
     }
 })
 
+user.add({
+    followed: [user],
+    followers: [user]
+})
+
 user.methods.toJSON = function () {
 
     let user = this;
