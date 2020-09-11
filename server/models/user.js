@@ -17,6 +17,11 @@ let user = new Schema({
         type: String,
         required: false
     },
+    username:{
+        type: String,
+        required: [true, 'Un usuario es requerido'],
+        unique: [true, 'El usuario debe ser unico']
+    },
     isActive: {
         type: Boolean,
         default: true

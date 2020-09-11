@@ -7,7 +7,8 @@ const add = ({email, password}, res) => {
 
     let user = new User({
         email:email,
-        password: bcrypt.hashSync(password, 10)
+        password: bcrypt.hashSync(password, 10),
+        username: email.split('@')[0]
     });
 
     user.save((error, entity) =>{
