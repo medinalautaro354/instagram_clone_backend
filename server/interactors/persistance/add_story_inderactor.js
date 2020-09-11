@@ -2,7 +2,7 @@ const Story = require('../../models/story');
 
 const add = ({userId, image, description }, res) =>{
     
-    Story.create({user: userId, image: image, description: description},(error, entity)=>{
+    Story.create({user: userId, image: image, description: description, creationDate: Date.now()},(error, entity)=>{
        if(error){
            res.status(400)
            .json({

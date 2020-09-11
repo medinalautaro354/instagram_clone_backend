@@ -25,6 +25,10 @@ let story = new Schema({
         ref: "Commentary",
         required: true
     }],
+    creationDate:{
+        type: Date,
+        required: true
+    },
     isActive: {
         type: Boolean,
         default: true
