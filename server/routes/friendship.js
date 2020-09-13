@@ -3,7 +3,7 @@ const app = express();
 
 const {addFollow, removeFollower} = require('../interactors/persistance/update_user_interactor');
 
-app.put('users/:id/friendships/follow', (req, res) => {
+app.put('/users/:id/friendships/follow', (req, res) => {
 
     let dto = {
         followerId: req.params.id,
@@ -13,7 +13,7 @@ app.put('users/:id/friendships/follow', (req, res) => {
     addFollow(dto, res)
 });
 
-app.put('users/:id/friendships/unfollow',(req, res) =>{
+app.put('/users/:id/friendships/unfollow',(req, res) =>{
 
     let dto = {
         followerId: req.params.id,
