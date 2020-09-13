@@ -1,21 +1,21 @@
 const Story = require('../models/story');
 const User = require('../models/user');
 
-const getByFollowerIdAndOrderByDate = async ({ id, from, take }, res) => {
+const getByFollowerIdAndOrderByDate = async ({ from, take }, {_id}, res) => {
 
     from = Number(from);
 
     take = Number(take);
 
-    let userRequest = await User.findById(id);
+    let userRequest = await User.findById(_id);
 
     let usersIds = userRequest.followed.map((f) => f.id);
 
-    usersIds = [...usersIds, id]
+    usersIds = [...usersIds, _id]
 
-    await Story.find({isActive: true, user: usersIds })
+    await Story.find({ isActive: true, user: usersIds })
         .populate('user', 'username')
-        .sort({creationDate: -1})
+        .sort({ creationDate: -1 })
         .skip(from)
         .limit(take)
         .exec((error, stories) => {
