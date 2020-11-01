@@ -6,9 +6,9 @@ const User = require('../../models/user');
 const add = ({email, password}, res) => {
 
     let user = new User({
-        email:email,
+        email:email.toLowerCase(),
         password: bcrypt.hashSync(password, 10),
-        username: email.split('@')[0]
+        username: email.split('@')[0].toLowerCase()
     });
 
     user.save((error, entity) =>{
