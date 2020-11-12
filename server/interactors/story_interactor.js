@@ -14,7 +14,7 @@ const getByFollowerIdAndOrderByDate = async ({ from, take }, {_id}, res) => {
     usersIds = [...usersIds, _id]
 
     await Story.find({ isActive: true, user: usersIds })
-        .populate('user', 'username')
+        .populate({path:'user', select: 'username profilePicture' })
         .sort({ creationDate: -1 })
         .skip(from)
         .limit(take)

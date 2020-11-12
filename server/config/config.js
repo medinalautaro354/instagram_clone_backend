@@ -10,6 +10,8 @@ process.env.EXPIRE_TOKEN = 60 * 60 * 24 * 30;
 //SEED jwt
 process.env.SEED = process.env.SEED || 'seedDEVELOPMENT';
 
+process.env.RUN_SEED = process.env.RUN_SEED || false;
+
 //BD
 let connectionString;
 

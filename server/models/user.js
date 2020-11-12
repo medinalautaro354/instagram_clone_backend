@@ -22,6 +22,12 @@ let user = new Schema({
         required: [true, 'Un usuario es requerido'],
         unique: [true, 'El usuario debe ser unico']
     },
+    stories:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Story'
+        }
+    ],
     isActive: {
         type: Boolean,
         default: true
