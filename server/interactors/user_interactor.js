@@ -4,9 +4,11 @@ const bcrypt = require('bcryptjs');
 const {buildToken} = require('./utils/jwt_interactor');
 
 
-const getByCredentials = ({email, password}, res) =>{
+const getByCredentials = async ({email, password}, res) =>{
 
-    User.findOne({ email: email.toLowerCase(), isActive: true }, (error, entity) => {
+    email = email.toLowerCase()
+
+    await User.findOne({ email: email, isActive: true }, (error, entity) => {
         if (error) {
             return res.status(500).json({
                 ok: false,
@@ -40,6 +42,45 @@ const getByCredentials = ({email, password}, res) =>{
             token
         })
     });
+}
+
+const getRandomUsers = () =>{
+    let numbers = []
+
+    User.find({isActive: true}, (error, entities) =>{
+        if (error) {
+            return res.status(500).json({
+                ok: false,
+                error
+            });
+        }
+
+        if(entities.length > 0){
+            for (let i = 0; i < 4; i++) {
+        
+                let random = getRandomNumber(entities.length);
+                
+                numbers.push(random)
+            }
+
+            return res.json({
+                ok: true,
+                entities: entites[numbers]
+            })
+        }
+
+        return res.json({
+            ok: true,
+            entities: []
+        })
+    })
+
+
+    
+}
+
+const getRandomNumber = (number) =>{
+    return Math.floor(Math.random() * number);
 }
 
 module.exports = {
