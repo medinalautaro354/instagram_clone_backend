@@ -4,9 +4,11 @@ const bcrypt = require('bcryptjs');
 const {buildToken} = require('./utils/jwt_interactor');
 
 
-const getByCredentials = ({email, password}, res) =>{
+const getByCredentials = async ({email, password}, res) =>{
 
-    User.findOne({ email: email.toLowerCase(), isActive: true }, (error, entity) => {
+    email = email.toLowerCase()
+
+    await User.findOne({ email: email, isActive: true }, (error, entity) => {
         if (error) {
             return res.status(500).json({
                 ok: false,
@@ -42,6 +44,8 @@ const getByCredentials = ({email, password}, res) =>{
     });
 }
 
+
+
 module.exports = {
-    getByCredentials
+    getByCredentials,
 }
