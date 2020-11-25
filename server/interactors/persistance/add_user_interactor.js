@@ -9,7 +9,7 @@ const add = ({email, password, profilePicture}, res) => {
         email:email.toLowerCase(),
         password: bcrypt.hashSync(password, 10),
         username: email.split('@')[0].toLowerCase(),
-        profilePicture: profilePicture ?? "https://i.stack.imgur.com/l60Hf.png"
+        profilePicture: profilePicture !== undefined ? profilePicture : "https://i.stack.imgur.com/l60Hf.png"
     });
 
     user.save((error, entity) =>{
